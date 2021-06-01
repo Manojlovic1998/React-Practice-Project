@@ -1,5 +1,5 @@
 import Card from "../UI/Card";
-
+import style from "./AddUser.module.css";
 
 const AddUser = props => {
 
@@ -9,7 +9,7 @@ const AddUser = props => {
     };
 
     return (
-        <Card>
+        <Card className={style.input}>
             <form onSubmit={userSubmitHandler}>
                 <label htmlFor="username">Username</label>
                 <input type="username" id="username"/>
