@@ -12,7 +12,7 @@ const AddUser = props => {
             <input type="username" id="username"/>
             <label htmlFor="age">Age <small>(Years)</small></label>
             <input type="number" id="age"/>
-            <button type="submit"></button>
+            <button type="submit">Add User</button>
         </form>
     );
 };
