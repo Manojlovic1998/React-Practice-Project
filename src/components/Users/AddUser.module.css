@@ -20,6 +20,15 @@
   margin-bottom: 0.5rem;
 }
 
+.input label.incorrect {
+  color: red;
+}
+
+.input input.incorrect {
+  border-color: red;
+  background-color: #e57a7a;
+}
+
 .input input:focus {
   outline: none;
   border-color: #4f005f;
