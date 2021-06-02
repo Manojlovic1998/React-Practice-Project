@@ -18,6 +18,9 @@ const AddUser = props => {
             setIsValidAge(false);
             return;
         }
+        // Two-way binding
+        setEnteredUsername('');
+        setEnteredAge('');
     };
 
     const userAgeChangeHandler = event => {
@@ -27,7 +30,7 @@ const AddUser = props => {
         setEnteredAge(event.target.value);
     };
 
-    const usernameChangeHanlder = event => {
+    const usernameChangeHandler = event => {
         if (enteredUsername.trim().length) {
             setIsValidName(true);
         }
@@ -39,7 +42,7 @@ const AddUser = props => {
             <form onSubmit={userSubmitHandler}>
                 <label htmlFor="username">Username</label>
                 <input className={!isValidName ? styles.incorrect : ''} value={enteredUsername}
-                       onChange={usernameChangeHanlder} type="username" id="username"/>
+                       onChange={usernameChangeHandler} type="username" id="username"/>
                 <label htmlFor="age">Age <small>(Years)</small></label>
                 <input className={!isValidAge ? styles.incorrect : ''} value={enteredAge}
                        onChange={userAgeChangeHandler} type="number" id="age"/>
