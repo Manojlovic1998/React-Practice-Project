@@ -6,11 +6,11 @@ import styles from "./AddUser.module.css";
 const AddUser = props => {
     const [isValidName, setIsValidName] = useState(true);
     const [isValidAge, setIsValidAge] = useState(true);
-    const [enteredUsername, setEnteredUsername] = useState('');
+    const [enteredUserName, setEnteredUsername] = useState('');
     const [enteredAge, setEnteredAge] = useState('');
     const userSubmitHandler = event => {
         event.preventDefault();
-        if (enteredUsername.trim().length === 0) {
+        if (enteredUserName.trim().length === 0) {
             setIsValidName(false);
             return;
         }
@@ -18,6 +18,8 @@ const AddUser = props => {
             setIsValidAge(false);
             return;
         }
+
+        props.onAddUser(enteredUserName,enteredAge);
         // Two-way binding
         setEnteredUsername('');
         setEnteredAge('');
@@ -31,7 +33,7 @@ const AddUser = props => {
     };
 
     const usernameChangeHandler = event => {
-        if (enteredUsername.trim().length) {
+        if (enteredUserName.trim().length) {
             setIsValidName(true);
         }
         setEnteredUsername(event.target.value);
@@ -41,7 +43,7 @@ const AddUser = props => {
         <Card className={styles.input}>
             <form onSubmit={userSubmitHandler}>
                 <label htmlFor="username">Username</label>
-                <input className={!isValidName ? styles.incorrect : ''} value={enteredUsername}
+                <input className={!isValidName ? styles.incorrect : ''} value={enteredUserName}
                        onChange={usernameChangeHandler} type="username" id="username"/>
                 <label htmlFor="age">Age <small>(Years)</small></label>
                 <input className={!isValidAge ? styles.incorrect : ''} value={enteredAge}
