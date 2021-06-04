@@ -2,6 +2,7 @@ import {useState} from 'react';
 import Card from "../UI/Card";
 import Button from "../UI/Button";
 import styles from "./AddUser.module.css";
+import ErrorModal from "../UI/ErrorModal";
 
 const AddUser = props => {
     const [isValidName, setIsValidName] = useState(true);
@@ -40,17 +41,20 @@ const AddUser = props => {
     };
 
     return (
-        <Card className={styles.input}>
-            <form onSubmit={userSubmitHandler}>
-                <label htmlFor="username">Username</label>
-                <input className={!isValidName ? styles.incorrect : ''} value={enteredUserName}
-                       onChange={usernameChangeHandler} type="username" id="username"/>
-                <label htmlFor="age">Age <small>(Years)</small></label>
-                <input className={!isValidAge ? styles.incorrect : ''} value={enteredAge}
-                       onChange={userAgeChangeHandler} type="number" id="age"/>
-                <Button type="submit">Add User</Button>
-            </form>
-        </Card>
+        <div>
+            <ErrorModal title="An error occurred!" message="Something went wrong!"/>
+            <Card className={styles.input}>
+                <form onSubmit={userSubmitHandler}>
+                    <label htmlFor="username">Username</label>
+                    <input className={!isValidName ? styles.incorrect : ''} value={enteredUserName}
+                           onChange={usernameChangeHandler} type="username" id="username"/>
+                    <label htmlFor="age">Age <small>(Years)</small></label>
+                    <input className={!isValidAge ? styles.incorrect : ''} value={enteredAge}
+                           onChange={userAgeChangeHandler} type="number" id="age"/>
+                    <Button type="submit">Add User</Button>
+                </form>
+            </Card>
+        </div>
     );
 };
 
