@@ -9,13 +9,15 @@ const AddUser = props => {
     const [isValidAge, setIsValidAge] = useState(true);
     const [enteredUserName, setEnteredUsername] = useState('');
     const [enteredAge, setEnteredAge] = useState('');
+
+    // Handlers
     const userSubmitHandler = event => {
         event.preventDefault();
         if (enteredUserName.trim().length === 0) {
             setIsValidName(false);
             return;
         }
-        if (enteredAge.trim().length === 0) {
+        if (enteredAge.trim().length === 0 || parseFloat(enteredAge.trim()) < 0) {
             setIsValidAge(false);
             return;
         }
@@ -40,9 +42,16 @@ const AddUser = props => {
         setEnteredUsername(event.target.value);
     };
 
+    const errorHandler = () => {
+        setIsValidName(true);
+        setIsValidAge(true);
+    };
+
     return (
         <div>
-            <ErrorModal title="An error occurred!" message="Something went wrong!"/>
+            {!isValidName || !isValidAge ?
+                <ErrorModal title={!isValidName ? 'Name field is empty!' : !isValidAge && 'Age field is empty or invalid!'}
+                            message={!isValidName ? 'Try filling in the name field!' : !isValidAge && 'Try filling in the age field!'} onErrorConfirmation={errorHandler}/> : ''}
             <Card className={styles.input}>
                 <form onSubmit={userSubmitHandler}>
                     <label htmlFor="username">Username</label>
